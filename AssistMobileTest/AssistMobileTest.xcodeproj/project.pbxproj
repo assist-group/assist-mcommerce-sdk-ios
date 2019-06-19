@@ -36,6 +36,8 @@
 		397449A11CA9811D00794FDA /* KeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397449A01CA9811D00794FDA /* KeyView.swift */; };
 		397449A31CA9814900794FDA /* CustomerSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397449A21CA9814900794FDA /* CustomerSettingsViewController.swift */; };
 		397449A51CA9818A00794FDA /* CustomerExtraSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397449A41CA9818A00794FDA /* CustomerExtraSettingsViewController.swift */; };
+		6EC9080622B91A8800831207 /* ApplePayPayment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC9080522B91A8800831207 /* ApplePayPayment.swift */; };
+		6EC9080822B91B2900831207 /* ApplePayService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC9080722B91B2900831207 /* ApplePayService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -128,6 +130,8 @@
 		397449A01CA9811D00794FDA /* KeyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyView.swift; sourceTree = "<group>"; };
 		397449A21CA9814900794FDA /* CustomerSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomerSettingsViewController.swift; sourceTree = "<group>"; };
 		397449A41CA9818A00794FDA /* CustomerExtraSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomerExtraSettingsViewController.swift; sourceTree = "<group>"; };
+		6EC9080522B91A8800831207 /* ApplePayPayment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplePayPayment.swift; sourceTree = "<group>"; };
+		6EC9080722B91B2900831207 /* ApplePayService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplePayService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -243,6 +247,8 @@
 				397449901CA9774E00794FDA /* Registration.swift */,
 				397449921CA9778100794FDA /* PayData.swift */,
 				397449951CA9789D00794FDA /* PayView.xib */,
+				6EC9080522B91A8800831207 /* ApplePayPayment.swift */,
+				6EC9080722B91B2900831207 /* ApplePayService.swift */,
 				397449941CA977F700794FDA /* Supporting Files */,
 			);
 			path = AssistMobile;
@@ -391,7 +397,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = Assist;
 				TargetAttributes = {
 					397449081CA9725E00794FDA = {
@@ -421,7 +427,7 @@
 			};
 			buildConfigurationList = 397449041CA9725E00794FDA /* Build configuration list for PBXProject "AssistMobileTest" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -524,8 +530,10 @@
 				3974498F1CA9771900794FDA /* DeviceLocation.swift in Sources */,
 				397449891CA975F400794FDA /* SoapRequest.swift in Sources */,
 				397449931CA9778100794FDA /* PayData.swift in Sources */,
+				6EC9080622B91A8800831207 /* ApplePayPayment.swift in Sources */,
 				3974498B1CA9763E00794FDA /* Configuration.swift in Sources */,
 				397449871CA975C500794FDA /* ResultService.swift in Sources */,
+				6EC9080822B91B2900831207 /* ApplePayService.swift in Sources */,
 				3974498D1CA9769000794FDA /* RequestData.swift in Sources */,
 				397449851CA9758000794FDA /* PayController.swift in Sources */,
 				397449831CA9752A00794FDA /* AssistPay.swift in Sources */,
@@ -594,18 +602,27 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -641,18 +658,27 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -688,7 +714,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ru.assist.AssistMobileTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "AssistMobileTest/AssistMobileTest-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -702,7 +728,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ru.assist.AssistMobileTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "AssistMobileTest/AssistMobileTest-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -775,7 +801,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -797,7 +823,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ru.assist.AssistMobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
