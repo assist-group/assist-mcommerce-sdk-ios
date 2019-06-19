@@ -69,17 +69,17 @@ class SoapService: NSObject, NSURLConnectionDataDelegate, XMLParserDelegate, URL
         let session = URLSession(configuration: sessionConfiguration, delegate: self, delegateQueue: nil)
         let task = session.dataTask(with: requestData) { data, response, error in
             guard let data = data, error == nil else {
-                print("error=\(error)")
+                print("error=\(String(describing: error))")
                 return
             }
             
             if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
                 print("statusCode should be 200, but is \(httpStatus.statusCode)")
-                print("response = \(response)")
+                print("response = \(String(describing: response))")
             }
             
             let responseString = String(data: data, encoding: .utf8)
-            print("responseString = \(responseString)")
+            print("responseString = \(String(describing: responseString))")
             
             let parser = XMLParser(data: data as Data)
             parser.delegate = self
@@ -88,12 +88,7 @@ class SoapService: NSObject, NSURLConnectionDataDelegate, XMLParserDelegate, URL
         }
         
         task.resume()
-        
-/*        if let connect = NSURLConnection(request: requestData, delegate: self) {
-            clean()
-            connect.start()
-        }
-*/    }
+    }
     
     func getElementName() -> String {
         return names.reduce("") {$0 + "." + $1}
@@ -146,7 +141,7 @@ class SoapService: NSObject, NSURLConnectionDataDelegate, XMLParserDelegate, URL
     }
     
     func urlSession(_ session: URLSession, didBecomeInvalidWithError error: Error?) {
-        print("didBecomeInvalidWithError: \(error)")
+        print("didBecomeInvalidWithError: \(String(describing: error))")
     }
     
     func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession) {

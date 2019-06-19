@@ -5,7 +5,6 @@
 //  Created by Sergey Kulikov on 27.12.16.
 //  Copyright © 2016 Assist. All rights reserved.
 //
-
 import Foundation
 import PassKit
 
@@ -57,7 +56,7 @@ class ApplePayService: NSObject, URLSessionDelegate {
             var billnumber = ""
             
             let json = try? JSONSerialization.jsonObject(with: sessionData) as? [String:Any]
-            if let orders = json??["order"] as? [Any] {
+            if let orders = json?["order"] as? [Any] {
                 if let order = orders[0] as? [String:Any] {
                     if let operations = order["operations"] as? [Any] {
                         if let operation = operations[0] as? [String:Any] {
@@ -68,9 +67,9 @@ class ApplePayService: NSObject, URLSessionDelegate {
                     billnumber = order["billnumber"] as? String ?? ""
                 }
             } else {
-                if let firstcode = json??["firstcode"] as? Int {
-                    let secondcode = json??["secondcode"] as? Int
-                    message = "firstcode: \(firstcode), secondcode: \(secondcode)"
+                if let firstcode = json?["firstcode"] as? Int {
+                    let secondcode = json?["secondcode"] as? Int
+                    message = "firstcode: \(firstcode), secondcode: \(String(describing: secondcode))"
                 }
             }
             

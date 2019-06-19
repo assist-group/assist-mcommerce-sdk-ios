@@ -88,7 +88,7 @@ class PayController: UIViewController, UIWebViewDelegate, RegistrationDelegate, 
         wait.stopAnimating()
     }
     
-    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebView.NavigationType) -> Bool {
         
         print("WebView delegate");
         
@@ -121,7 +121,9 @@ class PayController: UIViewController, UIWebViewDelegate, RegistrationDelegate, 
     }
     
     func registration(_ faultcode: String?, faultstring: String?) {
-        print("registration: error faultcode=\(faultcode), faultstring=\(faultstring)")
+        if let fc = faultcode, let fs = faultstring {
+            print("registration: error faultcode=\(fc), faultstring=\(fs)")
+        }
         resultError(faultcode, faultstring: faultstring)
     }
     
@@ -160,7 +162,7 @@ class PayController: UIViewController, UIWebViewDelegate, RegistrationDelegate, 
     }
     
     func result(_ bill: String, state: String, message: String?) {
-        print("success: bill=\(bill), state=\(state), message=\(message)")
+        print("success: bill=\(bill), state=\(state), message=\(String(describing: message))")
         DispatchQueue.main.async { [unowned self] in
             self.dismiss(animated: true, completion: nil)
             

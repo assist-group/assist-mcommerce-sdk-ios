@@ -11,8 +11,8 @@ import UIKit
 
 
 open class AssistLinks {
-    open static var currentHost = hosts[0]
-    open static let hosts = ["https://payments.t.paysecure.ru", "https://payments.d.paysecure.ru", "https://payments.paysecure.ru", "https://test.paysecure.ru", "https://test.paysec.by", "https://payments.paysec.by" ]
+    public static var currentHost = hosts[0]
+    public static let hosts = ["https://payments.t.paysecure.ru", "https://payments.d.paysecure.ru", "https://payments.paysecure.ru", "https://test.paysecure.ru", "https://test.paysec.by", "https://payments.paysec.by" ]
     
     static let RegService = "/registration/mobileregistration.cfm"
     static let PayPagesService = "/pay/order.cfm"

@@ -258,7 +258,7 @@ open class PayData: RequestData {
         for (key, value) in fieldValues {
             req += "\(key.rawValue)=\(value)&"
         }
-        req.remove(at: req.characters.index(before: req.endIndex))
+        req.remove(at: req.index(before: req.endIndex))
         
         return req
     }

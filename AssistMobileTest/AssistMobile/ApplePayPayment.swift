@@ -5,7 +5,6 @@
 //  Created by Sergey Kulikov on 26.12.16.
 //  Copyright © 2016 Assist. All rights reserved.
 //
-
 import Foundation
 import PassKit
 
@@ -85,13 +84,14 @@ class ApplePayPayment: NSObject, PKPaymentAuthorizationViewControllerDelegate, D
             payDelegate.payFinished("", status: "ERROR", message: "Amount should be greather than zero.")
             return
         }
-     
-        let applePayController = PKPaymentAuthorizationViewController(paymentRequest: request)
-        applePayController.delegate = self
-        if PKPaymentAuthorizationViewController.canMakePayments(usingNetworks: supportedPaymentNetworks) {
-            controller?.present(applePayController, animated: true, completion: nil)
-        } else {
-            payDelegate.payFinished("", status: "ERROR", message: "Can not make payment through ApplePay")
+        
+        if let applePayController = PKPaymentAuthorizationViewController(paymentRequest: request) {
+            applePayController.delegate = self
+            if PKPaymentAuthorizationViewController.canMakePayments(usingNetworks: supportedPaymentNetworks) {
+                controller?.present(applePayController, animated: true, completion: nil)
+            } else {
+                payDelegate.payFinished("", status: "ERROR", message: "Can not make payment through ApplePay")
+            }
         }
     }
     
