@@ -35,11 +35,11 @@ class KeyView: UIView {
             let skew = 0.1
             
             let attributes = [
-                NSForegroundColorAttributeName: fieldColor,
-                NSParagraphStyleAttributeName: paraStyle,
-                NSObliquenessAttributeName: skew,
-                NSFontAttributeName: fieldFont!
-            ] as [String : Any]
+                NSAttributedString.Key.foregroundColor.rawValue: fieldColor,
+                NSAttributedString.Key.paragraphStyle: paraStyle,
+                NSAttributedString.Key.obliqueness: skew,
+                NSAttributedString.Key.font: fieldFont!
+                ] as! [NSAttributedString.Key : Any]
             
             string.draw(in: rect, withAttributes: attributes)
         }

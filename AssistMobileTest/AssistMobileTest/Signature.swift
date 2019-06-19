@@ -19,7 +19,7 @@ class Signature {
         let result = UnsafeMutablePointer<CUnsignedChar>.allocate(capacity: digestLen)
         CC_MD5(str!, strLen, result)
         let digestData = Data(bytes: UnsafePointer<UInt8>(result), count: digestLen)
-        result.deinitialize()
+        result.deinitialize(count: 1)
         return digestData
     }
     
@@ -93,13 +93,14 @@ class Signature {
     static func secKeyToNSData(_ key: SecKey) -> Data?
     {
         let tempTag = "ru.assist.mobile.sdk.temp"
-        let parameters = [
-            String(kSecClass): kSecClassKey,
-            String(kSecAttrApplicationTag): tempTag,
-            String(kSecAttrKeyType): kSecAttrKeyTypeRSA,
-            String(kSecValueRef): key,
-            String(kSecReturnData): kCFBooleanTrue
-        ] as [String : Any]
+        var parameters : [CFString: Any] = [
+            kSecClass: kSecClassKey,
+            kSecAttrApplicationTag: tempTag,
+            kSecAttrKeyType: kSecAttrKeyTypeRSA,
+            kSecValueRef: key
+        ]
+        
+        parameters[kSecReturnData] = true
         var keyPtr: CFTypeRef?
         let result = SecItemAdd(parameters as CFDictionary, &keyPtr)
         
@@ -129,8 +130,9 @@ class Signature {
             String(kSecValueData): data,
             String(kSecAttrKeyClass): kSecAttrKeyClassPrivate,
             String(kSecAttrKeyType): kSecAttrKeyTypeRSA,
-            String(kSecReturnPersistentRef): kCFBooleanTrue
         ]
+        
+        parameters[String(kSecReturnPersistentRef)] = kCFBooleanTrue
         var keyRefPtr: CFTypeRef?
         let result = SecItemAdd(parameters as CFDictionary, &keyRefPtr)
         
