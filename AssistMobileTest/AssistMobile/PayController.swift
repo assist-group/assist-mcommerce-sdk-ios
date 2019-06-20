@@ -64,7 +64,7 @@ class PayController: UIViewController, UIWebViewDelegate, RegistrationDelegate, 
         regData.name = Configuration.appName
         regData.version = Configuration.version
         regData.deviceId = Configuration.uuid
-        regData.shop = data?.merchantId
+        regData.merchId = data?.merchantId
         let reg = Registration(regData: regData, regDelegate: self)
         reg.start()
     }
