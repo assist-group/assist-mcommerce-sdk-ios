@@ -19,19 +19,17 @@ open class RequestData: NSObject {
     
     func buldRequest(_ url: URL) -> URLRequest {
         let contents = buildRequestString()
-        let body = NSMutableData()
-        body.append(contents.data(using: String.Encoding.utf8)!)
         
         let request = NSMutableURLRequest(url: url)
         request.httpMethod = "POST"
         
         addHeaderProperties(request)
         
-        let contentLength = "\(body.length)"
-        request.setValue(contentLength, forHTTPHeaderField: "Content-Length")
-        request.httpBody = body as Data
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         
-        print("request body \(body), contents \(contents)")
+        request.httpBody = contents.data(using: .utf8)
+        
+        print("request contents \(contents)")
         
         return request as URLRequest
     }

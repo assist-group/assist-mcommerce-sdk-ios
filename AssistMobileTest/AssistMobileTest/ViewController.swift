@@ -41,6 +41,20 @@ class ViewController: UIViewController, AssistPayDelegate, UIPickerViewDataSourc
     }
     @IBOutlet weak var result: UILabel!
     
+    @IBOutlet weak var logn: UITextField! {
+        didSet {
+            logn.delegate = self
+            logn.text = "sale928654"
+        }
+    }
+    
+    @IBOutlet weak var password: UITextField! {
+        didSet {
+            password.delegate = self
+            password.text = "sale928654"
+        }
+    }
+    
     let currencyPicker = UIPickerView()
     
     var data = PayData()
@@ -143,6 +157,10 @@ class ViewController: UIViewController, AssistPayDelegate, UIPickerViewDataSourc
             data.password = df.string(forKey: "user_password")!
             apmid = df.string(forKey: "ap_merchant_id")!
         }
+        
+        data.login = logn.text ?? data.login
+        data.password = password.text ?? data.password
+        
         data.orderNumber = orderNumber.text
         data.orderComment = orderComment.text
         data.orderAmount = orderAmount.text

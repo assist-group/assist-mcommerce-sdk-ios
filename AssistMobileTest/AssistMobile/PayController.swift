@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Assist. All rights reserved.
 //
 
-import UIKit
+import WebKit
 
 extension NSURLRequest {
     static func allowsAnyHTTPSCertificate(forHost host: String) -> Bool {
@@ -14,10 +14,10 @@ extension NSURLRequest {
     }
 }
 
-class PayController: UIViewController, UIWebViewDelegate, RegistrationDelegate, DeviceLocationDelegate, ResultServiceDelegate {
+class PayController: UIViewController, WKNavigationDelegate, WKUIDelegate, RegistrationDelegate, DeviceLocationDelegate, ResultServiceDelegate {
     
     
-    @IBOutlet weak var webView: UIWebView!
+    @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var wait: UIActivityIndicatorView!
     
     var authenticated = false
@@ -33,6 +33,9 @@ class PayController: UIViewController, UIWebViewDelegate, RegistrationDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad()
         wait.startAnimating()
+        
+        webView.navigationDelegate = self
+        webView.uiDelegate = self
         
         if let params = data {
             collectDeviceData(params)
@@ -64,7 +67,8 @@ class PayController: UIViewController, UIWebViewDelegate, RegistrationDelegate, 
         regData.name = Configuration.appName
         regData.version = Configuration.version
         regData.deviceId = Configuration.uuid
-        regData.shop = data?.merchantId
+        regData.shop = "1"
+        regData.merchId = data?.merchantId
         let reg = Registration(regData: regData, regDelegate: self)
         reg.start()
     }
@@ -73,8 +77,7 @@ class PayController: UIViewController, UIWebViewDelegate, RegistrationDelegate, 
         print("start payment")
         let request = params.buldRequest(URL(string: AssistLinks.currentHost + AssistLinks.PayPagesService)!)
         
-        webView.delegate = self
-        webView.loadRequest(request)
+        webView.load(request)
     }
     
     func continuePay() {
@@ -84,30 +87,33 @@ class PayController: UIViewController, UIWebViewDelegate, RegistrationDelegate, 
         }
     }
     
-    func webViewDidFinishLoad(_ webView: UIWebView) {
+    func webView(_ webView: WKWebView, didFinish: WKNavigation!) {
         wait.stopAnimating()
     }
     
-    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebView.NavigationType) -> Bool {
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        var action: WKNavigationActionPolicy?
         
-        print("WebView delegate");
-        
-        if let url = request.url {
-            print("URL: \(url.path)")
-            
-            let path = url.path
-            if path.hasSuffix("result.cfm") {
-                webView.stopLoading()
-                getResult()
-            } else if path.hasSuffix("body.cfm") {
-                webView.stopLoading()
-                repeated = true
-                getResult()
-            }
-    
+        defer {
+            decisionHandler(action ?? .allow)
         }
         
-        return true
+        print("WebView delegate")
+        
+            if let url = navigationAction.request.url {
+                print("URL: \(url.path)")
+                
+                let path = url.path
+                if path.hasSuffix("result.cfm") {
+                    action = .cancel
+                    getResult()
+                } else if path.hasSuffix("body.cfm") {
+
+//                    action = .cancel
+//                    getResult()
+                }
+        
+            }
     }
     
     func registration(_ id: String) {

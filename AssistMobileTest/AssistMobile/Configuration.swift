@@ -12,7 +12,7 @@ import UIKit
 
 open class AssistLinks {
     public static var currentHost = hosts[0]
-    public static let hosts = ["https://payments.t.paysecure.ru", "https://payments.d.paysecure.ru", "https://payments.paysecure.ru", "https://test.paysecure.ru", "https://test.paysec.by", "https://payments.paysec.by" ]
+    public static let hosts = ["https://payments.t.paysecure.ru", "https://payments.d.paysecure.ru", "https://payments.demo.paysecure.ru", "https://payments.paysecure.ru", "https://test.paysecure.ru", "https://test.paysec.by", "https://payments.paysec.by" ]
     
     static let RegService = "/registration/mobileregistration.cfm"
     static let PayPagesService = "/pay/order.cfm"
@@ -64,9 +64,14 @@ class Configuration {
     
     static var model: String? {
         get {
-            var sysinfo = utsname()
-            uname(&sysinfo) // ignore return value
-            return NSString(bytes: &sysinfo.machine, length: Int(_SYS_NAMELEN), encoding: String.Encoding.ascii.rawValue)! as String
+            var systemInfo = utsname()
+            uname(&systemInfo)
+            let machineMirror = Mirror(reflecting: systemInfo.machine)
+            let identifier = machineMirror.children.reduce("") { identifier, element in
+                guard let value = element.value as? Int8, value != 0 else { return identifier }
+                return identifier + String(UnicodeScalar(UInt8(value)))
+            }
+            return identifier
         }
     }
     

@@ -34,6 +34,7 @@ open class PayData: RequestData {
         case MerchantId = "Merchant_ID"
         case CustomerId = "CustomerNumber"
         case OrderNumber = "OrderNumber"
+        
         case Language = "Language"
         case OrderAmount = "OrderAmount"
         case OrderComment = "OrderComment"
@@ -254,14 +255,24 @@ open class PayData: RequestData {
     open var date: Date?
     
     override func buildRequestString() -> String {
-        var req = String()
-        for (key, value) in fieldValues {
-            req += "\(key.rawValue)=\(value)&"
-        }
-        req.remove(at: req.index(before: req.endIndex))
-        
-        return req
+        return fieldValues.map { (key, value) in
+            let escapedKey = "\(key.rawValue)".addingPercentEncoding(withAllowedCharacters: .urlQueryValueAllowed) ?? ""
+            let escapedValue = "\(value)".addingPercentEncoding(withAllowedCharacters: .urlQueryValueAllowed) ?? ""
+            return escapedKey + "=" + escapedValue
+            }
+            .joined(separator: "&")
     }
     
+}
+
+extension CharacterSet {
+    static let urlQueryValueAllowed: CharacterSet = {
+        let generalDelimitersToEncode = ":#[]@" // does not include "?" or "/" due to RFC 3986 - Section 3.4
+        let subDelimitersToEncode = "!$&'()*+,;="
+        
+        var allowed = CharacterSet.urlQueryAllowed
+        allowed.remove(charactersIn: "\(generalDelimitersToEncode)\(subDelimitersToEncode)")
+        return allowed
+    }()
 }
 
