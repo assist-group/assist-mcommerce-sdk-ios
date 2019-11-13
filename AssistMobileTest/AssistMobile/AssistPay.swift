@@ -35,7 +35,7 @@ open class AssistPay: NSObject {
     fileprivate var pay: PayController
     fileprivate var applePay: AnyObject?
     
-    public init(delegate: AssistPayDelegate) {
+    @objc public init(delegate: AssistPayDelegate) {
         let bundle = Bundle(identifier: "ru.assist.AssistMobile")
         pay = PayController(nibName: "PayView", bundle: bundle)
         pay.payDelegate = delegate
@@ -58,7 +58,7 @@ open class AssistPay: NSObject {
     }
     
     @available(iOS 10.0, *)
-    open func startWithApplePay(_ controller: UIViewController, withData: PayData, applePayMerchantId: String) {
+    @objc open func startWithApplePay(_ controller: UIViewController, withData: PayData, applePayMerchantId: String) {
         (applePay! as! ApplePayPayment).pay(controller, withData: withData, withMerchantId: applePayMerchantId)
     }
     
