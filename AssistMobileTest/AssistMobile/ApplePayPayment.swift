@@ -101,7 +101,8 @@ class ApplePayPayment: NSObject, PKPaymentAuthorizationViewControllerDelegate, D
         regData.name = Configuration.appName
         regData.version = Configuration.version
         regData.deviceId = Configuration.uuid
-        regData.shop = payData?.merchantId
+        regData.merchId = payData?.merchantId
+        regData.shop = "1"
         let reg = Registration(regData: regData, regDelegate: self)
         reg.start()
     }

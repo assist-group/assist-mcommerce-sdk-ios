@@ -77,7 +77,10 @@ class PayController: UIViewController, WKNavigationDelegate, WKUIDelegate, Regis
         print("start payment")
         let request = params.buldRequest(URL(string: AssistLinks.currentHost + AssistLinks.PayPagesService)!)
         
-        webView.load(request)
+        DispatchQueue.main.async {
+            self.webView.load(request)
+        }
+        
     }
     
     func continuePay() {
