@@ -54,6 +54,46 @@ class ApplePayPayment: NSObject, PKPaymentAuthorizationViewControllerDelegate, D
         }
     }
     
+    func isApplePayAvailable(withMerchantId: String) -> Bool {
+        merchantId = withMerchantId
+        
+        let request = PKPaymentRequest()
+        request.merchantIdentifier = merchantId!
+        request.supportedNetworks = supportedPaymentNetworks
+        request.merchantCapabilities = PKMerchantCapability.capability3DS
+        request.countryCode = "RU"
+        request.currencyCode = "RUB"
+        
+        let formatter = NumberFormatter()
+        formatter.generatesDecimalNumbers = true
+        formatter.decimalSeparator = ","
+        var amount = formatter.number(from: "1.0") as! NSDecimalNumber? ?? 1.0
+        
+        if !(amount.doubleValue > 0.0) {
+            formatter.decimalSeparator = "."
+            amount = formatter.number(from: "1.0") as! NSDecimalNumber? ?? 1.0
+        }
+        
+        if amount.doubleValue > 0.0 {
+            request.paymentSummaryItems = [
+                PKPaymentSummaryItem(label: "payment", amount: amount)
+            ]
+        } else {
+            return false
+        }
+        
+        if let applePayController = PKPaymentAuthorizationViewController(paymentRequest: request) {
+            applePayController.delegate = self
+            if PKPaymentAuthorizationViewController.canMakePayments() {
+                return true
+            } else {
+                return false
+            }
+        }
+        
+        return false
+    }
+    
     func continuePay() {
         if !locationUpdated || !registrationCompleted {
             return  // wait for completion registration and location updaing
@@ -87,9 +127,12 @@ class ApplePayPayment: NSObject, PKPaymentAuthorizationViewControllerDelegate, D
         
         if let applePayController = PKPaymentAuthorizationViewController(paymentRequest: request) {
             applePayController.delegate = self
-            if PKPaymentAuthorizationViewController.canMakePayments(usingNetworks: supportedPaymentNetworks) {
+            if !PKPaymentAuthorizationViewController.canMakePayments(usingNetworks: supportedPaymentNetworks) {
                 controller?.present(applePayController, animated: true, completion: nil)
+
             } else {
+                let library = PKPassLibrary()
+                library.openPaymentSetup()
                 payDelegate.payFinished("", status: "ERROR", message: "Can not make payment through ApplePay")
             }
         }

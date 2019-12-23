@@ -63,6 +63,7 @@ class ViewController: UIViewController, AssistPayDelegate, UIPickerViewDataSourc
     var defaults: UserDefaults?
     
     var pay: AssistPay?
+    @IBOutlet weak var apButton: UIButton!
     
     @IBAction func startPay(_ sender: UIButton) {
         data = PayData()
@@ -178,6 +179,7 @@ class ViewController: UIViewController, AssistPayDelegate, UIPickerViewDataSourc
         merchantId.text = "928654"
         registerSettingsBundle()
         updateDefaults()
+        updateApplePayStatus()
         super.viewDidLoad()
     }
     
@@ -238,6 +240,17 @@ class ViewController: UIViewController, AssistPayDelegate, UIPickerViewDataSourc
     
     func updateDefaults() {
         defaults = UserDefaults.standard
+    }
+    
+    func updateApplePayStatus() {
+        var apmid = ""
+        if let df = defaults {
+            apmid = df.string(forKey: "ap_merchant_id")!
+        }
+        
+        pay = AssistPay(delegate: self)
+        let ap = pay!.isApplePayAvailable(applePayMerchantId: apmid)
+        apButton.isEnabled = ap
     }
     
 }
