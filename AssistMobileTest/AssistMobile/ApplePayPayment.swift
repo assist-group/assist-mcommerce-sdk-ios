@@ -127,7 +127,7 @@ class ApplePayPayment: NSObject, PKPaymentAuthorizationViewControllerDelegate, D
         
         if let applePayController = PKPaymentAuthorizationViewController(paymentRequest: request) {
             applePayController.delegate = self
-            if !PKPaymentAuthorizationViewController.canMakePayments(usingNetworks: supportedPaymentNetworks) {
+            if PKPaymentAuthorizationViewController.canMakePayments(usingNetworks: supportedPaymentNetworks) {
                 controller?.present(applePayController, animated: true, completion: nil)
 
             } else {
