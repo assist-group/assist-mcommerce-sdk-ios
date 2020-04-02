@@ -14,7 +14,7 @@ extension NSURLRequest {
     }
 }
 
-class PayController: UIViewController, WKNavigationDelegate, WKUIDelegate, RegistrationDelegate, DeviceLocationDelegate, ResultServiceDelegate {
+class PayController: UIViewController, WKNavigationDelegate, WKUIDelegate, RegistrationDelegate, DeviceLocationDelegate, ResultServiceDelegate, FiscalReceiptServiceDelegate {
     
     
     @IBOutlet weak var webView: WKWebView!
@@ -28,6 +28,7 @@ class PayController: UIViewController, WKNavigationDelegate, WKUIDelegate, Regis
     var data: PayData?
     var deviceLocation: DeviceLocation?
     weak var payDelegate: AssistPayDelegate?
+    weak var fiscalReceiptDelegate: AssistFiscalReceiptDelegate?
     var repeated = false
     
     override func viewDidLoad() {
@@ -151,6 +152,30 @@ class PayController: UIViewController, WKNavigationDelegate, WKUIDelegate, Regis
             print("location error: \(text)")
             locationUpdated = true
             continuePay()
+        }
+    }
+    
+    func getFiscalReceipt() {
+        let request = FiscalReceiptRequest()
+        if let payData = data {
+            request.login = payData.login
+            request.password = payData.password
+            request.billnumber = payData.billnumber
+            request.merchantId = payData.merchantId
+            let service = FiscalReceiptService(requestData: request, delegate: self)
+            service.start()
+        }
+    }
+    
+    func fiscalReceiptResult(_ url: String) {
+        let realUrl = NSURL(string: url)
+        print("url: \(realUrl!)")
+        DispatchQueue.main.async { [unowned self] in
+            self.dismiss(animated: true, completion: nil)
+            
+            if let delegate = self.fiscalReceiptDelegate {
+                delegate.fiscalReceiptFinished(url)
+            }
         }
     }
     

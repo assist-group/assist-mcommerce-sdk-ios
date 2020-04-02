@@ -78,6 +78,7 @@ open class PayData: RequestData {
         case Login = "Login"
         case Password = "Password"
         case PaymentToken = "PaymentToken"
+        case Billnumber = "Billnumber"
     }
     
     fileprivate var fieldValues = [Fields : String]()
@@ -250,6 +251,11 @@ open class PayData: RequestData {
     var paymentToken: String? {
         get { return fieldValues[Fields.PaymentToken] }
         set { fieldValues[Fields.PaymentToken] = newValue }
+    }
+    
+    @objc open var billnumber: String? {
+        get { return fieldValues[Fields.Billnumber] }
+        set { fieldValues[Fields.Billnumber] = newValue }
     }
     
     @objc open var date: Date?

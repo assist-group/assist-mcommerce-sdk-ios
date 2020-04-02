@@ -10,7 +10,7 @@ import UIKit
 import AssistMobile
 import PassKit
 
-class ViewController: UIViewController, AssistPayDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
+class ViewController: UIViewController, AssistPayDelegate, AssistFiscalReceiptDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var merchantId: UITextField! {
         didSet {
@@ -30,6 +30,11 @@ class ViewController: UIViewController, AssistPayDelegate, UIPickerViewDataSourc
     @IBOutlet weak var orderComment: UITextField! {
         didSet {
             orderComment.delegate = self
+        }
+    }
+    @IBOutlet weak var billnumber: UITextField! {
+        didSet {
+            billnumber.delegate = self
         }
     }
     @IBOutlet weak var orderCurrency: UITextField! {
@@ -63,6 +68,7 @@ class ViewController: UIViewController, AssistPayDelegate, UIPickerViewDataSourc
     var defaults: UserDefaults?
     
     var pay: AssistPay?
+    var fiscalReceipt: FiscalReceipt?
     @IBOutlet weak var apButton: UIButton!
     
     @IBAction func startPay(_ sender: UIButton) {
@@ -147,6 +153,23 @@ class ViewController: UIViewController, AssistPayDelegate, UIPickerViewDataSourc
         pay!.getResult(data)
     }
     
+    @IBAction func getFiscalReceipt(_ sender: UIButton) {
+        data = PayData()
+        fiscalReceipt = FiscalReceipt(delegate: self)
+        data.merchantId = merchantId.text
+        data.billnumber = billnumber.text //"5928654245473783.1"
+        if let df = defaults {
+            data.login = df.string(forKey: "user_login")!
+            data.password = df.string(forKey: "user_password")!
+        }
+        data.login = logn.text ?? data.login
+        data.password = password.text ?? data.password
+        
+        AssistLinks.currentHost = Settings.host ?? AssistLinks.currentHost
+        
+        fiscalReceipt!.getFiscalReceipt(data)
+    }
+    
     @available(iOS 10.0, *)
     @IBAction func payWithApplePay(_ sender: UIButton) {
         data = PayData()
@@ -186,6 +209,11 @@ class ViewController: UIViewController, AssistPayDelegate, UIPickerViewDataSourc
     func payFinished(_ bill: String, status: String, message: String?) {
         let msg = message ?? ""
         result.text = "Finished: bill = \(bill), status = \(status), message = \(msg)"
+        billnumber.text = "\(bill).1"
+    }
+    
+    func fiscalReceiptFinished(_ url: String) {
+        result.text = "url: \(url)"
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

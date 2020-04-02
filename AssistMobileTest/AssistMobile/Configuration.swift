@@ -17,6 +17,7 @@ open class AssistLinks {
     static let RegService = "/registration/mobileregistration.cfm"
     static let PayPagesService = "/pay/order.cfm"
     static let ResultService = "/orderresult/mobileorderresult.cfm"
+    static let FiscalReceiptService = "/fiscal/fiscalreceipt.cfm"
     static let ApplePayService = "/pay/tokenpay.cfm"
 }
 

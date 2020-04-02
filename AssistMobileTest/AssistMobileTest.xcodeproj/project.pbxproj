@@ -38,6 +38,8 @@
 		397449A51CA9818A00794FDA /* CustomerExtraSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397449A41CA9818A00794FDA /* CustomerExtraSettingsViewController.swift */; };
 		6EC9080622B91A8800831207 /* ApplePayPayment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC9080522B91A8800831207 /* ApplePayPayment.swift */; };
 		6EC9080822B91B2900831207 /* ApplePayService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC9080722B91B2900831207 /* ApplePayService.swift */; };
+		7B05D80C242B7F270047DCAC /* FiscalReceipt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B05D80B242B7F270047DCAC /* FiscalReceipt.swift */; };
+		7BB03F3A242A5E8200F41138 /* FiscalReceiptService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB03F39242A5E8200F41138 /* FiscalReceiptService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -133,6 +135,8 @@
 		6EC9080522B91A8800831207 /* ApplePayPayment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplePayPayment.swift; sourceTree = "<group>"; };
 		6EC9080722B91B2900831207 /* ApplePayService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplePayService.swift; sourceTree = "<group>"; };
 		6EC9080A22DF58C100831207 /* AssistMobileTest.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AssistMobileTest.entitlements; sourceTree = "<group>"; };
+		7B05D80B242B7F270047DCAC /* FiscalReceipt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiscalReceipt.swift; sourceTree = "<group>"; };
+		7BB03F39242A5E8200F41138 /* FiscalReceiptService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiscalReceiptService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -252,6 +256,8 @@
 				6EC9080522B91A8800831207 /* ApplePayPayment.swift */,
 				6EC9080722B91B2900831207 /* ApplePayService.swift */,
 				397449941CA977F700794FDA /* Supporting Files */,
+				7BB03F39242A5E8200F41138 /* FiscalReceiptService.swift */,
+				7B05D80B242B7F270047DCAC /* FiscalReceipt.swift */,
 			);
 			path = AssistMobile;
 			sourceTree = "<group>";
@@ -538,6 +544,8 @@
 				3974498F1CA9771900794FDA /* DeviceLocation.swift in Sources */,
 				397449891CA975F400794FDA /* SoapRequest.swift in Sources */,
 				397449931CA9778100794FDA /* PayData.swift in Sources */,
+				7B05D80C242B7F270047DCAC /* FiscalReceipt.swift in Sources */,
+				7BB03F3A242A5E8200F41138 /* FiscalReceiptService.swift in Sources */,
 				6EC9080622B91A8800831207 /* ApplePayPayment.swift in Sources */,
 				3974498B1CA9763E00794FDA /* Configuration.swift in Sources */,
 				397449871CA975C500794FDA /* ResultService.swift in Sources */,
@@ -720,12 +728,12 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = AssistMobileTest/AssistMobileTest.entitlements;
-				CURRENT_PROJECT_VERSION = 34;
+				CURRENT_PROJECT_VERSION = 37;
 				DEVELOPMENT_TEAM = K3669GL23T;
 				INFOPLIST_FILE = AssistMobileTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = ru.assist.AssistMobileTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "AssistMobileTest/AssistMobileTest-Bridging-Header.h";
@@ -739,12 +747,12 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = AssistMobileTest/AssistMobileTest.entitlements;
-				CURRENT_PROJECT_VERSION = 34;
+				CURRENT_PROJECT_VERSION = 37;
 				DEVELOPMENT_TEAM = K3669GL23T;
 				INFOPLIST_FILE = AssistMobileTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = ru.assist.AssistMobileTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "AssistMobileTest/AssistMobileTest-Bridging-Header.h";

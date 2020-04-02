@@ -1,0 +1,117 @@
+
+/* Class = "UIButton"; normalTitle = "Подробнее"; ObjectID = "28r-4I-eaq"; */
+"28r-4I-eaq.normalTitle" = "Подробнее";
+
+/* Class = "UILabel"; text = "Хост"; ObjectID = "2V7-Rh-8f1"; */
+"2V7-Rh-8f1.text" = "Хост";
+
+/* Class = "UIButton"; normalTitle = "Сгенерировать"; ObjectID = "3q5-an-2L4"; */
+"3q5-an-2L4.normalTitle" = "Сгенерировать";
+
+/* Class = "UILabel"; text = "Мобильный телефон"; ObjectID = "59t-xP-jhb"; */
+"59t-xP-jhb.text" = "Мобильный телефон";
+
+/* Class = "UILabel"; text = "Рабочий телефон"; ObjectID = "6GO-Sd-5uI"; */
+"6GO-Sd-5uI.text" = "Рабочий телефон";
+
+/* Class = "UIButton"; normalTitle = "Закрыть"; ObjectID = "98n-uF-iRo"; */
+"98n-uF-iRo.normalTitle" = "Закрыть";
+
+/* Class = "UILabel"; text = "Email"; ObjectID = "9Dh-De-CwB"; */
+"9Dh-De-CwB.text" = "Email";
+
+/* Class = "UILabel"; text = "Язык"; ObjectID = "BGg-J0-4YU"; */
+"BGg-J0-4YU.text" = "Язык";
+
+/* Class = "UILabel"; text = "Комментарий"; ObjectID = "BeR-v2-Umb"; */
+"BeR-v2-Umb.text" = "Комментарий";
+
+/* Class = "UILabel"; text = "Фамилия"; ObjectID = "CiY-LS-bvv"; */
+"CiY-LS-bvv.text" = "Фамилия";
+
+/* Class = "UILabel"; text = "Сумма"; ObjectID = "EXO-Es-wQi"; */
+"EXO-Es-wQi.text" = "Сумма";
+
+/* Class = "UIButton"; normalTitle = "Закрыть"; ObjectID = "EcV-Jg-2LY"; */
+"EcV-Jg-2LY.normalTitle" = "Закрыть";
+
+/* Class = "UILabel"; text = "Пароль"; ObjectID = "Gjf-fn-RBZ"; */
+"Gjf-fn-RBZ.text" = "Пароль";
+
+/* Class = "UITextField"; text = "RUB"; ObjectID = "HjP-n7-YX1"; */
+"HjP-n7-YX1.text" = "RUB";
+
+/* Class = "UILabel"; text = "Факс"; ObjectID = "Lef-mA-IVi"; */
+"Lef-mA-IVi.text" = "Факс";
+
+/* Class = "UILabel"; text = "Индекс"; ObjectID = "MFT-C2-VOI"; */
+"MFT-C2-VOI.text" = "Индекс";
+
+/* Class = "UILabel"; text = "Страна"; ObjectID = "N1G-40-UF0"; */
+"N1G-40-UF0.text" = "Страна";
+
+/* Class = "UILabel"; text = "Город"; ObjectID = "Nok-06-WFd"; */
+"Nok-06-WFd.text" = "Город";
+
+/* Class = "UIButton"; normalTitle = "Параметры"; ObjectID = "USG-yT-swO"; */
+"USG-yT-swO.normalTitle" = "Параметры";
+
+/* Class = "UILabel"; text = "One Click"; ObjectID = "UW0-Mq-RHT"; */
+"UW0-Mq-RHT.text" = "One Click";
+
+/* Class = "UIButton"; normalTitle = "Данные покупателя"; ObjectID = "WON-8I-rAL"; */
+"WON-8I-rAL.normalTitle" = "Данные покупателя";
+
+/* Class = "UIButton"; normalTitle = "Скопировать"; ObjectID = "Waf-X0-EEa"; */
+"Waf-X0-EEa.normalTitle" = "Скопировать";
+
+/* Class = "UILabel"; text = "Использовть подпись"; ObjectID = "XM5-Ui-6R6"; */
+"XM5-Ui-6R6.text" = "Использовть подпись";
+
+/* Class = "UILabel"; text = "Имя"; ObjectID = "XQ4-f0-SYT"; */
+"XQ4-f0-SYT.text" = "Имя";
+
+/* Class = "UIButton"; normalTitle = "Закрыть"; ObjectID = "YLF-8e-aQc"; */
+"YLF-8e-aQc.normalTitle" = "Закрыть";
+
+/* Class = "UILabel"; text = "Штат"; ObjectID = "ZRc-9p-Igl"; */
+"ZRc-9p-Igl.text" = "Штат";
+
+/* Class = "UILabel"; text = "Номер магазина"; ObjectID = "ZsP-XC-H1Z"; */
+"ZsP-XC-H1Z.text" = "Номер магазина";
+
+/* Class = "UILabel"; text = "Адрес"; ObjectID = "Zvp-ve-fXz"; */
+"Zvp-ve-fXz.text" = "Адрес";
+
+/* Class = "UILabel"; text = "Customer ID"; ObjectID = "a0f-43-9sG"; */
+"a0f-43-9sG.text" = "Customer ID";
+
+/* Class = "UIButton"; normalTitle = "Получить результат"; ObjectID = "aS2-z1-Ilu"; */
+"aS2-z1-Ilu.normalTitle" = "Получить результат";
+
+/* Class = "UIButton"; normalTitle = "Оплатить"; ObjectID = "cnO-Gj-u9P"; */
+"cnO-Gj-u9P.normalTitle" = "Оплатить";
+
+/* Class = "UILabel"; text = "Номер заказа"; ObjectID = "inS-Gb-dqD"; */
+"inS-Gb-dqD.text" = "Номер заказа";
+
+/* Class = "UILabel"; text = "Домашний телефон"; ObjectID = "nfS-NA-btw"; */
+"nfS-NA-btw.text" = "Домашний телефон";
+
+/* Class = "UIButton"; normalTitle = "Вставить"; ObjectID = "qF4-Ig-wOk"; */
+"qF4-Ig-wOk.normalTitle" = "Вставить";
+
+/* Class = "UILabel"; text = "Отчество"; ObjectID = "r2h-Ul-xYH"; */
+"r2h-Ul-xYH.text" = "Отчество";
+
+/* Class = "UILabel"; text = "Логин"; ObjectID = "tdN-hF-29b"; */
+"tdN-hF-29b.text" = "Логин";
+
+/* Class = "UIButton"; normalTitle = "Настройки подписи"; ObjectID = "woJ-uT-BpX"; */
+"woJ-uT-BpX.normalTitle" = "Настройки подписи";
+
+/* Class = "UIButton"; normalTitle = "Оплата через ApplePay"; ObjectID = "y7e-Rw-56f"; */
+"y7e-Rw-56f.normalTitle" = "Оплата через ApplePay";
+
+/* Class = "UIButton"; normalTitle = "Закрыть"; ObjectID = "z0n-Ig-iDt"; */
+"z0n-Ig-iDt.normalTitle" = "Закрыть";
