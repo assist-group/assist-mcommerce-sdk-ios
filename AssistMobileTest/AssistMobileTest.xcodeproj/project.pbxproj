@@ -39,6 +39,8 @@
 		6EC9080622B91A8800831207 /* ApplePayPayment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC9080522B91A8800831207 /* ApplePayPayment.swift */; };
 		6EC9080822B91B2900831207 /* ApplePayService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC9080722B91B2900831207 /* ApplePayService.swift */; };
 		7B05D80C242B7F270047DCAC /* FiscalReceipt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B05D80B242B7F270047DCAC /* FiscalReceipt.swift */; };
+		7B14F7C22464695A0018CE15 /* FiscalSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B14F7C12464695A0018CE15 /* FiscalSettingsViewController.swift */; };
+		7B9A9A8B2465878100A673B5 /* PositionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9A9A8A2465878100A673B5 /* PositionsViewController.swift */; };
 		7BB03F3A242A5E8200F41138 /* FiscalReceiptService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB03F39242A5E8200F41138 /* FiscalReceiptService.swift */; };
 /* End PBXBuildFile section */
 
@@ -136,6 +138,8 @@
 		6EC9080722B91B2900831207 /* ApplePayService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplePayService.swift; sourceTree = "<group>"; };
 		6EC9080A22DF58C100831207 /* AssistMobileTest.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AssistMobileTest.entitlements; sourceTree = "<group>"; };
 		7B05D80B242B7F270047DCAC /* FiscalReceipt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiscalReceipt.swift; sourceTree = "<group>"; };
+		7B14F7C12464695A0018CE15 /* FiscalSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiscalSettingsViewController.swift; sourceTree = "<group>"; };
+		7B9A9A8A2465878100A673B5 /* PositionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionsViewController.swift; sourceTree = "<group>"; };
 		7BB03F39242A5E8200F41138 /* FiscalReceiptService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiscalReceiptService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -218,6 +222,8 @@
 				397449A21CA9814900794FDA /* CustomerSettingsViewController.swift */,
 				397449A41CA9818A00794FDA /* CustomerExtraSettingsViewController.swift */,
 				397449811CA9745F00794FDA /* Supporting Files */,
+				7B14F7C12464695A0018CE15 /* FiscalSettingsViewController.swift */,
+				7B9A9A8A2465878100A673B5 /* PositionsViewController.swift */,
 			);
 			path = AssistMobileTest;
 			sourceTree = "<group>";
@@ -515,6 +521,8 @@
 				3974499A1CA9792700794FDA /* Signature.swift in Sources */,
 				397449A11CA9811D00794FDA /* KeyView.swift in Sources */,
 				397449981CA978EA00794FDA /* Settings.swift in Sources */,
+				7B14F7C22464695A0018CE15 /* FiscalSettingsViewController.swift in Sources */,
+				7B9A9A8B2465878100A673B5 /* PositionsViewController.swift in Sources */,
 				3974490F1CA9725E00794FDA /* ViewController.swift in Sources */,
 				3974490D1CA9725E00794FDA /* AppDelegate.swift in Sources */,
 			);

@@ -79,6 +79,35 @@ open class PayData: RequestData {
         case Password = "Password"
         case PaymentToken = "PaymentToken"
         case Billnumber = "Billnumber"
+        
+        case TaxpayerID = "TaxpayerID"
+        case CustomerDocID = "CustomerDocID"
+        case PaymentAddress = "PaymentAddress"
+        case PaymentPlace = "PaymentPlace"
+        case Cashier = "Cashier"
+        case CashierINN = "CashierINN"
+        case PaymentTerminal = "PaymentTerminal"
+        case TransferOperatorPhone = "TransferOperatorPhone"
+        case TransferOperatorName = "TransferOperatorName"
+        case TransferOperatorAddress = "TransferOperatorAddress"
+        case TransferOperatorINN = "TranferOperatorINN"
+        case PaymentReceiverOperatorPhone = "PaymentReceiverOperatorPhone"
+        case PaymentAgentPhone = "PaymentAgentPhone"
+        case PaymentAgentOperation = "PaymentAgentOperation"
+        case SupplierPhone = "SupplierPhone"
+        case PaymentAgentMode = "PaymentAgentMode"
+        case DocumentRequisite = "DocumentRequisite"
+        case UserRequisites = "UserRequisites"
+        case CompanyName = "CompanyName"
+        
+        case GenerateReceipt = "GenerateReceipt"
+        case ReceiptLine = "ReceiptLine"
+        case TAX = "TAX"
+        case FPMode = "FPMode"
+        case TaxationSystem = "TaxationSystem"
+        case prepayment = "prepayment"
+        
+        case ChequeItems = "ChequeItems"
     }
     
     fileprivate var fieldValues = [Fields : String]()
@@ -259,6 +288,136 @@ open class PayData: RequestData {
     }
     
     @objc open var date: Date?
+    
+    @objc open var taxpayerID: String? {
+        get { return fieldValues[Fields.TaxpayerID] }
+        set { fieldValues[Fields.TaxpayerID] = newValue }
+    }
+    
+    @objc open var customerDocID: String? {
+        get { return fieldValues[Fields.CustomerDocID] }
+        set { fieldValues[Fields.CustomerDocID] = newValue }
+    }
+    
+    @objc open var paymentAddress: String? {
+        get { return fieldValues[Fields.PaymentAddress] }
+        set { fieldValues[Fields.PaymentAddress] = newValue }
+    }
+    
+    @objc open var paymentPlace: String? {
+        get { return fieldValues[Fields.PaymentPlace] }
+        set { fieldValues[Fields.PaymentPlace] = newValue }
+    }
+    
+    @objc open var cashier: String? {
+        get { return fieldValues[Fields.Cashier] }
+        set { fieldValues[Fields.Cashier] = newValue }
+    }
+    
+    @objc open var cashierINN: String? {
+        get { return fieldValues[Fields.CashierINN] }
+        set { fieldValues[Fields.CashierINN] = newValue }
+    }
+    
+    @objc open var paymentTerminal: String? {
+        get { return fieldValues[Fields.PaymentTerminal] }
+        set { fieldValues[Fields.PaymentTerminal] = newValue }
+    }
+    
+    @objc open var transferOperatorPhone: String? {
+        get { return fieldValues[Fields.TransferOperatorPhone] }
+        set { fieldValues[Fields.TransferOperatorPhone] = newValue }
+    }
+    
+    @objc open var transferOperatorName: String? {
+        get { return fieldValues[Fields.TransferOperatorName] }
+        set { fieldValues[Fields.TransferOperatorName] = newValue }
+    }
+    
+    @objc open var transferOperatorAddress: String? {
+        get { return fieldValues[Fields.TransferOperatorAddress] }
+        set { fieldValues[Fields.TransferOperatorAddress] = newValue }
+    }
+    
+    @objc open var transferOperatorINN: String? {
+        get { return fieldValues[Fields.TransferOperatorINN] }
+        set { fieldValues[Fields.TransferOperatorINN] = newValue }
+    }
+    
+    @objc open var paymentReceiverOperatorPhone: String? {
+        get { return fieldValues[Fields.PaymentReceiverOperatorPhone] }
+        set { fieldValues[Fields.PaymentReceiverOperatorPhone] = newValue }
+    }
+    
+    @objc open var paymentAgentPhone: String? {
+        get { return fieldValues[Fields.PaymentAgentPhone] }
+        set { fieldValues[Fields.PaymentAgentPhone] = newValue }
+    }
+    
+    @objc open var paymentAgentOperation: String? {
+        get { return fieldValues[Fields.PaymentAgentOperation] }
+        set { fieldValues[Fields.PaymentAgentOperation] = newValue }
+    }
+    
+    @objc open var supplierPhone: String? {
+        get { return fieldValues[Fields.SupplierPhone] }
+        set { fieldValues[Fields.SupplierPhone] = newValue }
+    }
+    
+    @objc open var paymentAgentMode: String? {
+        get { return fieldValues[Fields.PaymentAgentMode] }
+        set { fieldValues[Fields.PaymentAgentMode] = newValue }
+    }
+    
+    @objc open var documentRequisite: String? {
+        get { return fieldValues[Fields.DocumentRequisite] }
+        set { fieldValues[Fields.DocumentRequisite] = newValue }
+    }
+    
+    @objc open var userRequisites: String? {
+        get { return fieldValues[Fields.UserRequisites] }
+        set { fieldValues[Fields.UserRequisites] = newValue }
+    }
+    
+    @objc open var companyName: String? {
+        get { return fieldValues[Fields.CompanyName] }
+        set { fieldValues[Fields.CompanyName] = newValue }
+    }
+    
+    @objc open var generateReceipt: String? {
+        get { return fieldValues[Fields.GenerateReceipt] }
+        set { fieldValues[Fields.GenerateReceipt] = newValue }
+    }
+    
+    @objc open var receiptLine: String? {
+        get { return fieldValues[Fields.ReceiptLine] }
+        set { fieldValues[Fields.ReceiptLine] = newValue }
+    }
+    
+    @objc open var fpmode: String? {
+        get { return fieldValues[Fields.FPMode] }
+        set { fieldValues[Fields.FPMode] = newValue }
+    }
+    
+    @objc open var tax: String? {
+        get { return fieldValues[Fields.TAX] }
+        set { fieldValues[Fields.TAX] = newValue }
+    }
+    
+    @objc open var taxationSystem: String? {
+        get { return fieldValues[Fields.TaxationSystem] }
+        set { fieldValues[Fields.TaxationSystem] = newValue }
+    }
+    
+    @objc open var prepayment: String? {
+        get { return fieldValues[Fields.prepayment] }
+        set { fieldValues[Fields.prepayment] = newValue }
+    }
+    
+    @objc open var chequeItems: String? {
+        get { return fieldValues[Fields.ChequeItems] }
+        set { fieldValues[Fields.ChequeItems] = newValue }
+    }
     
     override func buildRequestString() -> String {
         return fieldValues.map { (key, value) in
