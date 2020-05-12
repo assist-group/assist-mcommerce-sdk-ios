@@ -108,6 +108,7 @@ open class PayData: RequestData {
         case prepayment = "prepayment"
         
         case ChequeItems = "ChequeItems"
+        case ChequeItem = "ChequeItem"
     }
     
     fileprivate var fieldValues = [Fields : String]()
@@ -419,6 +420,11 @@ open class PayData: RequestData {
         set { fieldValues[Fields.ChequeItems] = newValue }
     }
     
+    @objc open var chequeItem: String? {
+        get { return fieldValues[Fields.ChequeItem] }
+        set { fieldValues[Fields.ChequeItem] = newValue }
+    }
+    
     override func buildRequestString() -> String {
         return fieldValues.map { (key, value) in
             let escapedKey = "\(key.rawValue)".addingPercentEncoding(withAllowedCharacters: .urlQueryValueAllowed) ?? ""
@@ -440,4 +446,3 @@ extension CharacterSet {
         return allowed
     }()
 }
-

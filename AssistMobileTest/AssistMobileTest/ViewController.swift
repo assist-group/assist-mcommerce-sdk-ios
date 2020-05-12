@@ -247,7 +247,43 @@ class ViewController: UIViewController, AssistPayDelegate, AssistFiscalReceiptDe
         data.orderCurrency = Currency(rawValue: orderCurrency.text ?? "")
         data.lastname = Settings.lastname
         data.firstname = Settings.firstname
+        data.middlename = Settings.middlename
         data.email = Settings.email
+        data.mobilePhone = Settings.mobilePhone
+        
+        data.address = Settings.address
+        data.homePhone = Settings.homePhone
+        data.workPhone = Settings.workPhone
+        data.state = Settings.state
+        data.city = Settings.city
+        data.zip = Settings.zip
+        
+        data.taxpayerID = Settings.taxpayerID
+        data.customerDocID = Settings.customerDocID
+        data.paymentAddress = Settings.paymentAddress
+        data.paymentPlace = Settings.paymentPlace
+        data.cashier = Settings.cashier
+        data.cashierINN = Settings.cashierINN
+        data.paymentTerminal = Settings.paymentTerminal
+        data.transferOperatorPhone = Settings.transferOperatorPhone
+        data.transferOperatorName = Settings.transferOperatorName
+        data.transferOperatorAddress = Settings.transferOperatorAddress
+        data.transferOperatorINN = Settings.transferOperatorINN
+        data.paymentReceiverOperatorPhone = Settings.paymentReceiverOperatorPhone
+        data.paymentAgentPhone = Settings.paymentAgentPhone
+        data.paymentAgentOperation = Settings.paymentAgentOperation
+        data.supplierPhone = Settings.supplierPhone
+        data.paymentAgentMode = Settings.paymentAgentMode
+        data.documentRequisite = Settings.documentRequisite
+        data.userRequisites = Settings.userRequisites
+        data.companyName = Settings.companyName
+        data.generateReceipt = Settings.generateReceipt
+        data.receiptLine = Settings.receiptLine
+        data.tax = Settings.tax
+        data.fpmode = Settings.fpmode
+        data.taxationSystem = Settings.taxationSystem
+        
+        data.chequeItem = Settings.chequeItems
         
         AssistLinks.currentHost = Settings.host ?? AssistLinks.currentHost
         
