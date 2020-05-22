@@ -9,6 +9,9 @@
 4. Add AssisyMobile.framework to  General->Embedded Binaries property
 5. Add key NSLocationWhenInUseUsageDescription to Info.plist -> Information Property List, set type to String and value 'Permit to send geolocation data to Assist'
 
+### Fiscalization
+Fiscal parameters and order items are transferred among other payment parameters (see test application). Assist Fiscalization Documentation: https://docs.assist.ru/pages/viewpage.action?pageId=5768155
+
 ### Code sample Swift
 
     import UIKit
