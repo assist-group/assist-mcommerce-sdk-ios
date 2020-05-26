@@ -9,6 +9,9 @@
 5. Добавить AssisyMobile.framework в настройку General->Embedded Binaries
 6. В ключ NSLocationWhenInUseUsageDescription в настройках Info.plist -> Information Property List, добавляем параметр типа String со значением 'Permit to send geolocation data to Assist'
 
+### Фискализация
+Фискальные параметры и позиции заказа передаются среди прочих параметров оплаты (см. тестовое приложение). Документация по фискализации Assist: https://docs.assist.ru/pages/viewpage.action?pageId=5768155
+
 ### Пример Swift
 
     import UIKit
