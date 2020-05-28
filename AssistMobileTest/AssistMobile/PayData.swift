@@ -108,7 +108,6 @@ open class PayData: RequestData {
         case prepayment = "prepayment"
         
         case ChequeItems = "ChequeItems"
-        case ChequeItem = "ChequeItem"
     }
     
     fileprivate var fieldValues = [Fields : String]()
@@ -418,11 +417,6 @@ open class PayData: RequestData {
     @objc open var chequeItems: String? {
         get { return fieldValues[Fields.ChequeItems] }
         set { fieldValues[Fields.ChequeItems] = newValue }
-    }
-    
-    @objc open var chequeItem: String? {
-        get { return fieldValues[Fields.ChequeItem] }
-        set { fieldValues[Fields.ChequeItem] = newValue }
     }
     
     override func buildRequestString() -> String {

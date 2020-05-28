@@ -283,7 +283,7 @@ class ViewController: UIViewController, AssistPayDelegate, AssistFiscalReceiptDe
         if (!(Settings.fpmode ?? "").isEmpty) { data.fpmode = Settings.fpmode }
         if (!(Settings.taxationSystem ?? "").isEmpty) { data.taxationSystem = Settings.taxationSystem }
         
-        if (!(Settings.chequeItems ?? "").isEmpty) { data.chequeItem = Settings.chequeItems }
+        if (!(Settings.chequeItems ?? "").isEmpty) { data.chequeItems = Settings.chequeItems }
         
         AssistLinks.currentHost = Settings.host ?? AssistLinks.currentHost
         
