@@ -19,6 +19,7 @@ open class AssistLinks {
     static let ResultService = "/orderresult/mobileorderresult.cfm"
     static let FiscalReceiptService = "/fiscal/fiscalreceipt.cfm"
     static let ApplePayService = "/pay/tokenpay.cfm"
+    static let ApplePayByOrderService = "/pay/tokenpay_order.cfm"
 }
 
 class Configuration {

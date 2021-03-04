@@ -11,15 +11,19 @@ import CoreLocation
 
 protocol DeviceLocationDelegate: class {
     func locationError(_ text: String)
-    func location(_ latitude: String, longitude: String)
+    func location(_ latitude: String, longitude: String, toResult: Bool, payAfterResult: Bool)
 }
 
 class DeviceLocation : NSObject, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
     fileprivate weak var delegate: DeviceLocationDelegate!
+    fileprivate var tr: Bool
+    fileprivate var par: Bool
     
-    init(delegate: DeviceLocationDelegate) {
+    init(delegate: DeviceLocationDelegate, toResult: Bool, payAfterResult: Bool) {
         self.delegate = delegate
+        tr = toResult
+        par = payAfterResult
     }
     
     func requestLocation() {
@@ -47,7 +51,7 @@ class DeviceLocation : NSObject, CLLocationManagerDelegate {
         let locationArray = locations as NSArray
         let locationObj = locationArray.lastObject as! CLLocation
         let coord = locationObj.coordinate
-        delegate.location("\(coord.latitude)", longitude: "\(coord.longitude)")
+        delegate.location("\(coord.latitude)", longitude: "\(coord.longitude)", toResult: tr, payAfterResult: par)
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -56,5 +60,4 @@ class DeviceLocation : NSObject, CLLocationManagerDelegate {
             delegate.locationError("location denied")
         }
     }
-    
 }

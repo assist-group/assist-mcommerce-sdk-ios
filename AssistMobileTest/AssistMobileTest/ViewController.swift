@@ -59,6 +59,11 @@ class ViewController: UIViewController, AssistPayDelegate, AssistFiscalReceiptDe
             password.text = "sale928654"
         }
     }
+    @IBOutlet weak var link: UITextField! {
+        didSet {
+            link.delegate = self
+        }
+    }
     
     let currencyPicker = UIPickerView()
     
@@ -79,6 +84,7 @@ class ViewController: UIViewController, AssistPayDelegate, AssistFiscalReceiptDe
         data.orderAmount = orderAmount.text
         data.orderComment = orderComment.text
         data.orderCurrency = Currency(rawValue: orderCurrency.text ?? "")
+        data.link = link.text
         
         if Settings.useOneClick {
             data.customerId = Settings.customerId
@@ -247,6 +253,7 @@ class ViewController: UIViewController, AssistPayDelegate, AssistFiscalReceiptDe
         data.orderCurrency = Currency(rawValue: orderCurrency.text ?? "")
         data.lastname = Settings.lastname
         data.firstname = Settings.firstname
+        data.link = link.text
         if (!(Settings.middlename ?? "").isEmpty) { data.middlename = Settings.middlename }
         if (!(Settings.email ?? "").isEmpty) { data.email = Settings.email }
         if (!(Settings.mobilePhone ?? "").isEmpty) { data.mobilePhone = Settings.mobilePhone }

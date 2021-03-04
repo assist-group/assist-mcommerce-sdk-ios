@@ -65,5 +65,4 @@ open class AssistPay: NSObject {
     @objc open func isApplePayAvailable(applePayMerchantId: String) -> Bool {
         return (applePay! as! ApplePayPayment).isApplePayAvailable(withMerchantId: applePayMerchantId)
     }
-    
 }

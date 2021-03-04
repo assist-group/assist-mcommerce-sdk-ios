@@ -9,7 +9,7 @@ import Foundation
 import PassKit
 
 @available(iOS 10.0, *)
-class ApplePayPayment: NSObject, PKPaymentAuthorizationViewControllerDelegate, DeviceLocationDelegate, RegistrationDelegate {
+class ApplePayPayment: NSObject, PKPaymentAuthorizationViewControllerDelegate, DeviceLocationDelegate, RegistrationDelegate, ResultServiceDelegate {
     
     let supportedPaymentNetworks = [PKPaymentNetwork.masterCard, PKPaymentNetwork.visa]
     var payData: PayData?
@@ -24,7 +24,7 @@ class ApplePayPayment: NSObject, PKPaymentAuthorizationViewControllerDelegate, D
         payDelegate = delegate
     }
     
-    func collectDeviceData() {
+    func collectDeviceData(toResult: Bool) {
         if let data = payData {
             data.deviceUniqueId = Configuration.uuid
             data.device = Configuration.model
@@ -32,7 +32,7 @@ class ApplePayPayment: NSObject, PKPaymentAuthorizationViewControllerDelegate, D
             data.applicationVersion = Configuration.version
             data.osLanguage = Configuration.preferredLang
             
-            deviceLocation = DeviceLocation(delegate: self)
+            deviceLocation = DeviceLocation(delegate: self, toResult: toResult, payAfterResult: true)
             deviceLocation!.requestLocation()
         }
     }
@@ -43,14 +43,30 @@ class ApplePayPayment: NSObject, PKPaymentAuthorizationViewControllerDelegate, D
         self.controller = controller
         merchantId = withMerchantId
         
-        collectDeviceData()
-        
-        if let regId = Configuration.regId {
-            payData?.registrationId = regId
-            registrationCompleted = true
-            continuePay()
-        } else {
-            startRegistration()
+        if let params = payData {
+            if (params.link ?? "").isEmpty {
+                checkRegistrationAndLocation(toResult: false)
+            } else {
+                checkRegistrationAndLocation(toResult: true)
+            }
+        }
+    }
+    
+    func checkRegistrationAndLocation(toResult: Bool) {
+        if let params = payData {
+            collectDeviceData(toResult: toResult)
+            
+            if let regId = Configuration.regId {
+                params.registrationId = regId
+                registrationCompleted = true
+                if toResult {
+                    continueResult()
+                } else {
+                    continuePay()
+                }
+            } else {
+                startRegistration(toResult: toResult)
+            }
         }
     }
     
@@ -138,7 +154,30 @@ class ApplePayPayment: NSObject, PKPaymentAuthorizationViewControllerDelegate, D
         }
     }
     
-    func startRegistration() {
+    func continueResult() {
+        print("continue result loc = \(locationUpdated), reg = \(registrationCompleted)")
+        if locationUpdated && registrationCompleted {
+            getResultReal()
+        }
+    }
+    
+    func getResultReal() {
+        let request = ResultRequest()
+        if let data = payData {
+            request.deviceId = Configuration.uuid
+            request.regId = Configuration.regId
+            request.orderNo = data.orderNumber
+            request.merchantId = data.merchantId
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd.MM.yyyy"
+            let date = data.date ?? Date()
+            request.date = dateFormatter.string(from: date)
+            let service = ResultService(requestData: request, payAfterResult: true, delegate: self)
+            service.start()
+        }
+    }
+    
+    func startRegistration(toResult: Bool) {
         let regData = RegistrationData()
         
         regData.name = Configuration.appName
@@ -146,7 +185,7 @@ class ApplePayPayment: NSObject, PKPaymentAuthorizationViewControllerDelegate, D
         regData.deviceId = Configuration.uuid
         regData.merchId = payData?.merchantId
         regData.shop = "1"
-        let reg = Registration(regData: regData, regDelegate: self)
+        let reg = Registration(regData: regData, regDelegate: self, toResult: toResult, payAfterResult: true)
         reg.start()
     }
     
@@ -163,13 +202,17 @@ class ApplePayPayment: NSObject, PKPaymentAuthorizationViewControllerDelegate, D
         controller.dismiss(animated: true, completion: nil)
     }
     
-    func location(_ latitude: String, longitude: String) {
+    func location(_ latitude: String, longitude: String, toResult: Bool, payAfterResult: Bool) {
         if !locationUpdated {
             payData!.latitude = latitude
             payData!.longitude = longitude
             locationUpdated = true
             DispatchQueue.main.async { [unowned self] in
-                self.continuePay()
+                if toResult {
+                    self.continueResult()
+                } else {
+                    self.continuePay()
+                }
             }
         }
     }
@@ -183,13 +226,17 @@ class ApplePayPayment: NSObject, PKPaymentAuthorizationViewControllerDelegate, D
         }
     }
     
-    func registration(_ id: String) {
+    func registration(_ id: String, toResult: Bool, payAfterResult: Bool) {
         if let params = payData {
             params.registrationId = id
             Configuration.regId = id
             registrationCompleted = true
             DispatchQueue.main.async { [unowned self] in
-                self.continuePay()
+                if toResult {
+                    self.continueResult()
+                } else {
+                    self.continuePay()
+                }
             }
         }
     }
@@ -205,5 +252,23 @@ class ApplePayPayment: NSObject, PKPaymentAuthorizationViewControllerDelegate, D
             
             self.payDelegate.payFinished("", status: "Unknown", message: errorMessage)
         }
+    }
+    
+    func result(_ bill: String, state: String, message: String?) {
+        // TODO result
+    }
+    
+    func resultFull(_ resData: PayData) {
+        resData.link = payData?.link
+        resData.login = payData?.login
+        resData.password = payData?.password
+        payData = resData
+        DispatchQueue.main.async { [unowned self] in
+            self.checkRegistrationAndLocation(toResult: false)
+        }
+    }
+    
+    func resultError(_ faultcode: String?, faultstring: String?) {
+        // TODO resultError
     }
 }

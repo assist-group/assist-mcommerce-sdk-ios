@@ -108,6 +108,10 @@ open class PayData: RequestData {
         case prepayment = "prepayment"
         
         case ChequeItems = "ChequeItems"
+        
+        case Link = "Link"
+        case OutCFSID = "outcfsid"
+        case ClientIP = "clientip"
     }
     
     fileprivate var fieldValues = [Fields : String]()
@@ -419,15 +423,41 @@ open class PayData: RequestData {
         set { fieldValues[Fields.ChequeItems] = newValue }
     }
     
+    @objc open var link: String? {
+        get { return fieldValues[Fields.Link] }
+        set { fieldValues[Fields.Link] = newValue }
+    }
+    
     override func buildRequestString() -> String {
+        var cfsid = ""
+        if let url = link {
+            cfsid = getCFSID(url: url)
+            fieldValues[Fields.OutCFSID] = cfsid
+            fieldValues[Fields.ClientIP] = "127.0.0.1"
+        }
+
         return fieldValues.map { (key, value) in
-            let escapedKey = "\(key.rawValue)".addingPercentEncoding(withAllowedCharacters: .urlQueryValueAllowed) ?? ""
-            let escapedValue = "\(value)".addingPercentEncoding(withAllowedCharacters: .urlQueryValueAllowed) ?? ""
-            return escapedKey + "=" + escapedValue
+            if (key != Fields.Link) {
+                let escapedKey = "\(key.rawValue)".addingPercentEncoding(withAllowedCharacters: .urlQueryValueAllowed) ?? ""
+                let escapedValue = "\(value)".addingPercentEncoding(withAllowedCharacters: .urlQueryValueAllowed) ?? ""
+                return escapedKey + "=" + escapedValue
+            }
+            return ""
             }
             .joined(separator: "&")
     }
     
+    func getCFSID(url: String) -> String {
+        if let cfsid = url.components(separatedBy: "CFSID=")[1].components(separatedBy: "&")[0].removingPercentEncoding {
+            //print("cfsid is \(cfsid)")
+            //let b = cfsid ~= "[\\w+/=]+"
+            //print("cfsid valid \(b)")
+            if cfsid ~= "[\\w+/=]+" {
+                return cfsid
+            }
+        }
+        return ""
+    }
 }
 
 extension CharacterSet {
@@ -439,4 +469,12 @@ extension CharacterSet {
         allowed.remove(charactersIn: "\(generalDelimitersToEncode)\(subDelimitersToEncode)")
         return allowed
     }()
+}
+
+extension String {
+    static func ~= (lhs: String, rhs: String) -> Bool {
+        guard let regex = try? NSRegularExpression(pattern: rhs) else { return false }
+        let range = NSRange(location: 0, length: lhs.utf8.count)
+        return regex.firstMatch(in: lhs, options: [], range: range) != nil
+    }
 }

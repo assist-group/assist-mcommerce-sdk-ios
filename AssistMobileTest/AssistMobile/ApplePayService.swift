@@ -24,12 +24,19 @@ class ApplePayService: NSObject, URLSessionDelegate {
         run(data)
     }
     
-    func getUrl() -> String {
-        return AssistLinks.currentHost + AssistLinks.ApplePayService
+    func getUrl(byOrder: Bool) -> String {
+        let servicePath = byOrder ? AssistLinks.ApplePayByOrderService : AssistLinks.ApplePayService
+        return AssistLinks.currentHost + servicePath
     }
     
     fileprivate func run(_ request: PayData) {
-        let requestData = request.buldRequest(URL(string: getUrl())!)
+        let byOrder = !((request.link ?? "").isEmpty)
+        let requestData = request.buldRequest(URL(string: getUrl(byOrder: byOrder))!)
+        
+        //print("\(requestData.httpMethod ?? "") \(requestData.url)")
+        //let str = String(decoding: requestData.httpBody!, as: UTF8.self)
+        //print("BODY \n \(str)")
+        //print("HEADERS \n \(requestData.allHTTPHeaderFields)")
         
         let sessionConfiguration = URLSessionConfiguration.default
         let session = URLSession(configuration: sessionConfiguration, delegate: self, delegateQueue: nil)
@@ -50,6 +57,9 @@ class ApplePayService: NSObject, URLSessionDelegate {
                         self.completion(PKPaymentAuthorizationStatus.failure)
                     }
                 }
+                
+                //let da = String(data: sessionData, encoding: .utf8)
+                //print("full response is \(da)")
             
                 var status = PKPaymentAuthorizationStatus.failure
                 var paymentStatus = "Unknown"
@@ -57,6 +67,7 @@ class ApplePayService: NSObject, URLSessionDelegate {
                 var billnumber = ""
             
                 if let json = try JSONSerialization.jsonObject(with: sessionData) as? [String:Any] {
+                    //print("response is \(json)")
                     if let orders = json["order"] as? [Any] {
                         if let order = orders[0] as? [String:Any] {
                             if let operations = order["operations"] as? [Any] {
