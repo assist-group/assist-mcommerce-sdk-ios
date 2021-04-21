@@ -431,9 +431,11 @@ open class PayData: RequestData {
     override func buildRequestString() -> String {
         var cfsid = ""
         if let url = link {
-            cfsid = getCFSID(url: url)
-            fieldValues[Fields.OutCFSID] = cfsid
-            fieldValues[Fields.ClientIP] = "127.0.0.1"
+            if (!url.isEmpty) {
+                cfsid = getCFSID(url: url)
+                fieldValues[Fields.OutCFSID] = cfsid
+                fieldValues[Fields.ClientIP] = "127.0.0.1"
+            }
         }
 
         return fieldValues.map { (key, value) in
