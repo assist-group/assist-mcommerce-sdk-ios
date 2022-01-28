@@ -11,7 +11,7 @@ import PassKit
 @available(iOS 10.0, *)
 class ApplePayPayment: NSObject, PKPaymentAuthorizationViewControllerDelegate, DeviceLocationDelegate, RegistrationDelegate, ResultServiceDelegate {
     
-    let supportedPaymentNetworks = [PKPaymentNetwork.masterCard, PKPaymentNetwork.visa, PKPaymentNetwork.mir]
+    var supportedPaymentNetworks = [PKPaymentNetwork.masterCard, PKPaymentNetwork.visa]
     var payData: PayData?
     var payDelegate: AssistPayDelegate
     var deviceLocation: DeviceLocation?
@@ -22,6 +22,12 @@ class ApplePayPayment: NSObject, PKPaymentAuthorizationViewControllerDelegate, D
     
     init(delegate: AssistPayDelegate) {
         payDelegate = delegate
+        
+        if #available(iOS 14.5, *) {
+            supportedPaymentNetworks = [PKPaymentNetwork.masterCard, PKPaymentNetwork.visa, PKPaymentNetwork.mir]
+        } else {
+            // Fallback on earlier versions
+        }
     }
     
     func collectDeviceData(toResult: Bool) {
