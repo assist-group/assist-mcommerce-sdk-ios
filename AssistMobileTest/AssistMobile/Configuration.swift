@@ -11,7 +11,7 @@ import UIKit
 
 @objc
 open class AssistLinks: NSObject {
-    public static var currentHost = hosts[0]
+    @objc public static var currentHost = hosts[0]
     public static let hosts = ["https://payments.t.paysecure.ru", "https://payments.d.paysecure.ru", "https://payments.demo.paysecure.ru", "https://payments.paysecure.ru", "https://test.paysecure.ru", "https://test.paysec.by", "https://payments.paysec.by" ]
     
     static let RegService = "/registration/mobileregistration.cfm"
