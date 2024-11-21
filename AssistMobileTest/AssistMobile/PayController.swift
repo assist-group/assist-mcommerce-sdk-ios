@@ -14,19 +14,18 @@ extension NSURLRequest {
     }
 }
 
-class PayController: UIViewController, WKNavigationDelegate, WKUIDelegate, RegistrationDelegate, DeviceLocationDelegate, ResultServiceDelegate, FiscalReceiptServiceDelegate {
+class PayController: UIViewController, WKNavigationDelegate, WKUIDelegate, RegistrationDelegate, ResultServiceDelegate, FiscalReceiptServiceDelegate {
     
     
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var wait: UIActivityIndicatorView!
     
     var authenticated = false
-    var locationUpdated = false
+    var locationUpdated = true
     var registrationCompleted = false
     var urlConnection: NSURLConnection?
     var badRequest: URLRequest?
     var data: PayData?
-    var deviceLocation: DeviceLocation?
     weak var payDelegate: AssistPayDelegate?
     weak var fiscalReceiptDelegate: AssistFiscalReceiptDelegate?
     var repeated = false
@@ -54,8 +53,6 @@ class PayController: UIViewController, WKNavigationDelegate, WKUIDelegate, Regis
         data.applicationVersion = Configuration.version
         data.osLanguage = Configuration.preferredLang
         
-        deviceLocation = DeviceLocation(delegate: self, toResult: toResult, payAfterResult: payAfterResult)
-        deviceLocation!.requestLocation()
     }
     
     func startRegistration() {

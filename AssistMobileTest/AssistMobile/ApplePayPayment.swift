@@ -9,13 +9,12 @@ import Foundation
 import PassKit
 
 @available(iOS 10.0, *)
-class ApplePayPayment: NSObject, PKPaymentAuthorizationViewControllerDelegate, DeviceLocationDelegate, RegistrationDelegate, ResultServiceDelegate {
+class ApplePayPayment: NSObject, PKPaymentAuthorizationViewControllerDelegate, RegistrationDelegate, ResultServiceDelegate {
     
     var supportedPaymentNetworks = [PKPaymentNetwork.masterCard, PKPaymentNetwork.visa]
     var payData: PayData?
     var payDelegate: AssistPayDelegate
-    var deviceLocation: DeviceLocation?
-    var locationUpdated = false
+    var locationUpdated = true
     var registrationCompleted = false
     var merchantId: String?
     var controller: UIViewController?
@@ -38,8 +37,6 @@ class ApplePayPayment: NSObject, PKPaymentAuthorizationViewControllerDelegate, D
             data.applicationVersion = Configuration.version
             data.osLanguage = Configuration.preferredLang
             
-            deviceLocation = DeviceLocation(delegate: self, toResult: toResult, payAfterResult: true)
-            deviceLocation!.requestLocation()
         }
     }
     
